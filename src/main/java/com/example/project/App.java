@@ -6,7 +6,7 @@ import org.json.simple.JSONArray;
 
 public class App {
     public static void main(String[] args) {
-        String fileName = "/Users/tomasrodriguez/Documents/college/SJCC/Spring 2026/CIS-055-Programming-2/commander/src/main/java/com/example/project/commands.json";
+        String fileName = "/Users/tomasrodriguez/Documents/college/SJCC/Spring 2026/CIS-055 Data Structures & Algorithms/Module 8/projects/commander/src/main/java/com/example/project/commands.json";
 
         // read coammands
         JSONArray commandJSONArray = JSONFile.readArray(fileName);
