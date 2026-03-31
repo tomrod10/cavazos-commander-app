@@ -10,7 +10,8 @@ import org.json.simple.JSONArray;
 public class App {
 
     // Stack for history of commands issued
-    private static Deque<String> commandsHistory = new ArrayDeque<>();
+    private static Deque<String> undoCommands = new ArrayDeque<>();
+    private static Deque<String> redoCommands = new ArrayDeque<>();
 
     public static void main(String[] args) {
         String fileName = "/Users/tomasrodriguez/Documents/college/SJCC/Spring 2026/CIS-055 Data Structures & Algorithms/Module 8/projects/commander/src/main/java/com/example/project/commands.json";
@@ -42,7 +43,15 @@ public class App {
                 case "i":
                     System.out.println();
                     randomCommand(commandArray, 1);
+                    break;
+                case "u":
+                    undoCommand();
+                    break;
+                case "r":
+                    redoCommand();
+                    break;
                 default:
+                    System.out.println("Unknown command ");
                     break;
             }
             System.out.println();
@@ -57,9 +66,30 @@ public class App {
         // System.out.printf("------\t---------------\n");
         for (int i = 0; i < numCommand; i++) {
             int randIndex = rand.nextInt(commandArray.length);
-            commandsHistory.add(commandArray[randIndex]);
+            undoCommands.add(commandArray[randIndex]);
             // System.out.printf("%04d\t%s\n", i, commandArray[randIndex]);
-            System.out.printf("[COMMAND ISSUED]: %s\n", commandArray[randIndex]);
+            System.out.printf("[COMMAND ISSUED] General Cavazos orders the troops to do: %s\n",
+                    commandArray[randIndex]);
+        }
+    }
+
+    public static void undoCommand() {
+        if (undoCommands.isEmpty()) {
+            System.out.println("There are no commands to undo. Please issue or redo a command");
+        } else {
+            String cmd = undoCommands.removeLast();
+            redoCommands.addLast(cmd);
+            System.out.printf("[UNDO COMMAND] General Cavazos orders the troops to undo: %s\n", cmd);
+        }
+    }
+
+    public static void redoCommand() {
+        if (redoCommands.isEmpty()) {
+            System.out.println("There are no commands to redo. Please issue a command");
+        } else {
+            String cmd = redoCommands.removeLast();
+            undoCommands.addLast(cmd);
+            System.out.printf("[REDO COMMAND] General Cavazos orders the troops to redo: %s\n", cmd);
         }
     }
 
