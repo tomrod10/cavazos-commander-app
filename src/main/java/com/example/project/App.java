@@ -22,10 +22,16 @@ public class App {
         while (inputCommand != "q") {
             printAppName();
             printMenu();
-            System.out.println("Enter a command:");
-            inputCommand = sc.nextLine();
+            System.out.printf("Enter a command: ");
+            inputCommand = sc.nextLine().toLowerCase();
 
-            inputCommand = "q";
+            switch (inputCommand) {
+                case "q":
+                    inputCommand = "q";
+                    break;
+                default:
+                    break;
+            }
         }
         sc.close();
 
