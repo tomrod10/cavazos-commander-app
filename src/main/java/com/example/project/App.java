@@ -19,7 +19,6 @@ public class App {
         // read coammands
         JSONArray commandJSONArray = JSONFile.readArray(fileName);
         String[] commandArray = getCommandArray(commandJSONArray);
-        // System.out.println(commandArray);
 
         // Open scanner
         String inputCommand = "";
@@ -62,12 +61,9 @@ public class App {
     // randomly issue commands from General Cavazos
     public static void randomCommand(String[] commandArray, int numCommand) {
         Random rand = new Random();
-        // System.out.printf("Number\tCommand\n");
-        // System.out.printf("------\t---------------\n");
         for (int i = 0; i < numCommand; i++) {
             int randIndex = rand.nextInt(commandArray.length);
             undoCommands.add(commandArray[randIndex]);
-            // System.out.printf("%04d\t%s\n", i, commandArray[randIndex]);
             System.out.printf("[COMMAND ISSUED] General Cavazos orders the troops to do: %s\n",
                     commandArray[randIndex]);
         }
