@@ -16,7 +16,7 @@ public class App {
     public static void main(String[] args) {
         String fileName = "/Users/tomasrodriguez/Documents/college/SJCC/Spring 2026/CIS-055 Data Structures & Algorithms/Module 8/projects/commander/src/main/java/com/example/project/commands.json";
 
-        // read coammands
+        // read commands
         JSONArray commandJSONArray = JSONFile.readArray(fileName);
         String[] commandArray = getCommandArray(commandJSONArray);
 
