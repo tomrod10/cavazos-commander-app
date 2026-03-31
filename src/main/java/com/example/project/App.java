@@ -1,6 +1,7 @@
 package com.example.project;
 
 import java.util.Random;
+import java.util.Scanner;
 
 import org.json.simple.JSONArray;
 
@@ -11,7 +12,22 @@ public class App {
         // read coammands
         JSONArray commandJSONArray = JSONFile.readArray(fileName);
         String[] commandArray = getCommandArray(commandJSONArray);
-        System.out.println(commandArray);
+        // System.out.println(commandArray);
+
+        // Open scanner
+        String inputCommand = "";
+        Scanner sc = new Scanner(System.in);
+
+        // Commander app loop
+        while (inputCommand != "q") {
+            printAppName();
+            printMenu();
+            System.out.println("Enter a command:");
+            inputCommand = sc.nextLine();
+
+            inputCommand = "q";
+        }
+        sc.close();
 
         // print list of all commands
         System.out.println("----- List of all commands -----");
@@ -52,5 +68,24 @@ public class App {
             arr[i] = command;
         }
         return arr;
+    }
+
+    public static void printLineBreak() {
+        System.out.println("----------------------------------------------------------");
+    }
+
+    public static void printAppName() {
+        printLineBreak();
+        System.out.println("General Cavazos Commander App");
+    }
+
+    public static void printMenu() {
+        printLineBreak();
+        System.out.printf("i\tIssue a command\n");
+        System.out.printf("l\tList of all the commands\n");
+        System.out.printf("i\tIssue a command\n");
+        System.out.printf("u\tUndo the last command that was issued\n");
+        System.out.printf("r\tRedo the last command that was issued\n");
+        printLineBreak();
     }
 }
