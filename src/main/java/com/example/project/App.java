@@ -112,7 +112,7 @@ public class App {
     }
 
     public static void printLineBreak() {
-        System.out.println("----------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------------------");
     }
 
     public static void printAppName() {
