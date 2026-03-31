@@ -1,11 +1,17 @@
 package com.example.project;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Random;
 import java.util.Scanner;
 
 import org.json.simple.JSONArray;
 
 public class App {
+
+    // Stack for history of commands issued
+    private static Deque<String> commandsHistory = new ArrayDeque<>();
+
     public static void main(String[] args) {
         String fileName = "/Users/tomasrodriguez/Documents/college/SJCC/Spring 2026/CIS-055 Data Structures & Algorithms/Module 8/projects/commander/src/main/java/com/example/project/commands.json";
 
@@ -30,12 +36,16 @@ public class App {
                     inputCommand = "q";
                     break;
                 case "l":
-                    System.out.printf("\n----- List of all commands -----\n");
+                    System.out.println();
                     print(commandArray);
                     break;
+                case "i":
+                    System.out.println();
+                    randomCommand(commandArray, 1);
                 default:
                     break;
             }
+            System.out.println();
         }
         sc.close();
     }
@@ -43,16 +53,19 @@ public class App {
     // randomly issue commands from General Cavazos
     public static void randomCommand(String[] commandArray, int numCommand) {
         Random rand = new Random();
-        System.out.printf("Number\tCommand\n");
-        System.out.printf("------\t---------------\n");
+        // System.out.printf("Number\tCommand\n");
+        // System.out.printf("------\t---------------\n");
         for (int i = 0; i < numCommand; i++) {
             int randIndex = rand.nextInt(commandArray.length);
-            System.out.printf("%04d\t%s\n", i, commandArray[randIndex]);
+            commandsHistory.add(commandArray[randIndex]);
+            // System.out.printf("%04d\t%s\n", i, commandArray[randIndex]);
+            System.out.printf("[COMMAND ISSUED]: %s\n", commandArray[randIndex]);
         }
     }
 
     // print command array
     public static void print(String[] commandArray) {
+        System.out.println("----- List of all commands -----");
         System.out.printf("Number\tCommand\n");
         System.out.printf("------\t---------------\n");
         for (int i = 0; i < commandArray.length; i++) {
