@@ -29,19 +29,15 @@ public class App {
                 case "q":
                     inputCommand = "q";
                     break;
+                case "l":
+                    System.out.printf("\n----- List of all commands -----\n");
+                    print(commandArray);
+                    break;
                 default:
                     break;
             }
         }
         sc.close();
-
-        // print list of all commands
-        System.out.println("----- List of all commands -----");
-        print(commandArray);
-
-        System.out.println(
-                "----- Issuing 5 random commands from General Cavazos -----");
-        randomCommand(commandArray, 5);
     }
 
     // randomly issue commands from General Cavazos
